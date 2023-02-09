@@ -1,0 +1,11 @@
+### VS Code ###
+.vscode/
+
+### Build results ###
+[Dd]ebug/
+[Rr]elease/
+[Rr]eleases/
+bld/
+[Oo]bj/
+[Ll]og/
+[Bb]in/

@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using Ardbot.Bot;
-using Ardbot.ServiceBase;
-using Bot;
+using Ardbot.Bot.Brain;
+using Ardbot.Bot.Hands;
+using Bot.Heart;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
@@ -43,8 +44,19 @@ namespace Ardbot{
                     }
                 );
 
+                var client = new DiscordShardedClient();
+                services.AddSingleton(client);
+
+                var commands = new CommandService(new CommandServiceConfig{
+                    LogLevel = LogSeverity.Info,
+                    CaseSensitiveCommands = false
+                });
+
+                services.AddSingleton(commands);
                 services.AddSingleton<IHeart, Heart>();
                 services.AddSingleton<IHostedService, BotHostedService>();
+                services.AddSingleton<IExampleCommands, ExampleCommands>();
+                services.AddSingleton<ICommandHandler, CommandHandler>();
             });
 
             // if (isService)

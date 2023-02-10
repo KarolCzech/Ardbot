@@ -1,5 +1,4 @@
-using Bot;
-using Discord.WebSocket;
+using Bot.Heart;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,7 +18,6 @@ namespace Ardbot.Bot{
         protected override async Task ExecuteAsync(CancellationToken cancellationToken){
             using (IServiceScope scope = _serviceScopeFactory.CreateScope()){
                 var logger = scope.ServiceProvider.GetRequiredService<ILogger<BotHostedService>>();
-
                 var botHeart = scope.ServiceProvider.GetRequiredService<IHeart>();
 
                 try{

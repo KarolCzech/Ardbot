@@ -47,12 +47,12 @@ namespace Ardbot{
                 var client = new DiscordShardedClient();
                 services.AddSingleton(client);
 
-                var commands = new CommandService(new CommandServiceConfig{
+                var commandService = new CommandService(new CommandServiceConfig{
                     LogLevel = LogSeverity.Info,
                     CaseSensitiveCommands = false
                 });
-
-                services.AddSingleton(commands);
+                services.AddSingleton(commandService);
+                
                 services.AddSingleton<IHeart, Heart>();
                 services.AddSingleton<IHostedService, BotHostedService>();
                 services.AddSingleton<IExampleCommands, ExampleCommands>();
